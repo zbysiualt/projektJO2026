@@ -8,7 +8,9 @@ KontoOszczednosciowe::KontoOszczednosciowe(string numer, double poczatkoweSaldo,
     : Konto(numer, poczatkoweSaldo, dane), oprocentowanie(stopa) {}
 void KontoOszczednosciowe::naliczOdsetki() 
 {
-    saldo += saldo * (oprocentowanie / 100.0);
+    double odsetki = saldo*(oprocentowanie/100.0);
+    saldo += odsetki;
+    dodajTransakcje("NALICZENIE ODSETEK", odsetki);
 }
 void KontoOszczednosciowe::wypiszInformacje() const 
 {
