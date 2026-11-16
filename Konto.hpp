@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include "Transakcja.hpp"
+#include "Wyjatki.hpp"
 using namespace std;
 
 class Konto 
@@ -26,7 +27,8 @@ class Konto
 
 
         virtual void wypiszInformacje() const;
-        virtual bool wyplac(double kwota);
+        virtual void wyplac(double kwota);
+        virtual void naliczOdsetki() {}
         void wplac(double kwota);
         Konto& operator+=(double kwota);
         friend ostream& operator<<(ostream& os, const Konto& k);

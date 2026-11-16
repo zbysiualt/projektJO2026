@@ -10,7 +10,7 @@ private:
 public:
     KontoFirmowe();
     KontoFirmowe(string numer, double poczatkoweSaldo, string dane, double prow);
-    bool wyplac(double kwota) override;
+    void wyplac(double kwota) override;
     void wypiszInformacje() const override;
 };
 #endif

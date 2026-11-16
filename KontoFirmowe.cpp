@@ -9,15 +9,19 @@ KontoFirmowe::KontoFirmowe(string numer, double poczatkoweSaldo, string dane, do
 
 
 
-bool KontoFirmowe::wyplac(double kwota) 
+void KontoFirmowe::wyplac(double kwota) 
 {
-    double calkowityKoszt = kwota+prowizja;
-    if (calkowityKoszt <= saldo) 
+    if (kwota <= 0) 
     {
-        saldo -= calkowityKoszt;
-        return true;
+        throw NieprawidlowaKwotaException();
     }
-    return false;
+    double calkowityKoszt = kwota+prowizja;
+    if (calkowityKoszt > saldo) 
+    {
+        throw BrakSrodkowException();
+    }
+    saldo -= calkowityKoszt;
+    dodajTransakcje("WYPLATA Z PROWIZJA", calkowityKoszt);
 }
 
 void KontoFirmowe::wypiszInformacje() const 

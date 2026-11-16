@@ -10,7 +10,7 @@ private:
 public:
     KontoOszczednosciowe();
     KontoOszczednosciowe(string numer, double poczatkoweSaldo, string dane, double stopa);
-    void naliczOdsetki();
+    void naliczOdsetki() override;
     void wypiszInformacje() const override;
 };
 #endif

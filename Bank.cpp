@@ -26,6 +26,11 @@ bool Bank::dodajKonto(Konto* noweKonto)
 }
 void Bank::wyswietlWszystkieKonta() const 
 {
+    if (liczbaKont == 0) 
+    {
+        cout << "Brak kont w banku.\n";
+        return;
+    }
     for (int i=0; i <liczbaKont; ++i) 
     {
         konta[i]->wypiszInformacje();
@@ -34,4 +39,15 @@ void Bank::wyswietlWszystkieKonta() const
 int Bank::getLiczbaKont() const 
 {
     return liczbaKont;
+}
+Konto* Bank::znajdzKonto(string numer) const 
+{
+    for (int i=0; i <liczbaKont; ++i) 
+    {
+        if (konta[i]->getNumerKonta() == numer) 
+        {
+            return konta[i];
+        }
+    }
+    throw NieznaneKontoException();
 }

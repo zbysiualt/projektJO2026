@@ -53,19 +53,27 @@ void Konto::wypiszInformacje() const
     cout << "Konto: " << numerKonta<< " | Wlasciciel: " <<wlasciciel<< " | Saldo: " <<saldo<< " PLN\n";
 }
 
-bool Konto::wyplac(double kwota) 
+void Konto::wyplac(double kwota) 
 {
-    if (kwota<=saldo) 
+    if (kwota <= 0) 
     {
+        throw NieprawidlowaKwotaException();
+    }
+
+    if (kwota > saldo) 
+    {
+        throw BrakSrodkowException();
+    }
         saldo -= kwota;
         dodajTransakcje("WYPLATA", kwota);
-        return true;
-    }
-    return false;
 }
 
 void Konto::wplac(double kwota) 
 {
+    if (kwota <= 0)
+    {
+        throw NieprawidlowaKwotaException();
+    }
     saldo +=kwota;
     dodajTransakcje("WPLATA", kwota);
 }

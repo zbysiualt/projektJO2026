@@ -1,6 +1,7 @@
 #ifndef BANK_HPP
 #define BANK_HPP
 #include "Konto.hpp"
+#include "Wyjatki.hpp"
 using namespace std;
 
 class Bank 
@@ -15,5 +16,6 @@ class Bank
         bool dodajKonto(Konto* noweKonto);
         void wyswietlWszystkieKonta() const;
         int getLiczbaKont() const;
+        Konto* znajdzKonto(string numer) const;
 };
 #endif
